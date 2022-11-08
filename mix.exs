@@ -4,9 +4,9 @@ defmodule LiveViewNativePlatform.MixProject do
   def project do
     [
       app: :live_view_native_platform,
-      version: "0.0.1",
+      version: "0.0.2",
       elixir: "~> 1.13",
-      description: "Platform-specific protocol library for LiveView native",
+      description: "Protocol library for implementing LiveView Native clients",
       package: package(),
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -24,7 +24,8 @@ defmodule LiveViewNativePlatform.MixProject do
   defp deps do
     [
       {:jason, "~> 1.2"},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:phoenix_html, "~> 3.0"}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]

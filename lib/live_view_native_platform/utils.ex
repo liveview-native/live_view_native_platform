@@ -7,6 +7,7 @@ defmodule LiveViewNativePlatform.Utils do
 
     {:must_point_to_directory, File.dir?(path)}
   end
+
   def check_attribute(_value, :must_point_to_directory), do: {:must_point_to_directory, false}
 
   def check_dependency(command) do
@@ -35,8 +36,10 @@ defmodule LiveViewNativePlatform.Utils do
     |> Enum.reduce({:ok, %{}}, fn {key, value}, {status, results} ->
       case Map.get(checks, key) do
         [_ | _] = checks ->
-          check_results = Enum.map(checks, &(check_attribute(value, &1)))
-          new_status = if Enum.all?(check_results, fn {_key, value} -> value end), do: status, else: :error
+          check_results = Enum.map(checks, &check_attribute(value, &1))
+
+          new_status =
+            if Enum.all?(check_results, fn {_key, value} -> value end), do: status, else: :error
 
           {new_status, Map.put(results, key, check_results)}
 
@@ -52,7 +55,7 @@ defmodule LiveViewNativePlatform.Utils do
         result
 
       {:error, result} ->
-        raise "check_platform!/2 failed with result: #{inspect result}"
+        raise "check_platform!/2 failed with result: #{inspect(result)}"
     end
   end
 
@@ -80,7 +83,7 @@ defmodule LiveViewNativePlatform.Utils do
         result
 
       {:error, result} ->
-        raise "#{inspect command} failed with result: #{inspect result}"
+        raise "#{inspect(command)} failed with result: #{inspect(result)}"
     end
   end
 end
