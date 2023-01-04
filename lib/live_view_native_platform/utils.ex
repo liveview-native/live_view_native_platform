@@ -25,7 +25,7 @@ defmodule LiveViewNativePlatform.Utils do
       {:ok, path} ->
         path
 
-      nil ->
+      _ ->
         raise ~s(Command "#{command}" not found)
     end
   end
