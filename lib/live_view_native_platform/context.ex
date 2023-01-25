@@ -4,6 +4,7 @@ defmodule LiveViewNativePlatform.Context do
   defstruct platform_config: nil,
             platform_id: nil,
             modifiers: nil,
+            template_engine: LiveViewNative.Engine,
             template_extension: nil,
             template_namespace: nil
 
