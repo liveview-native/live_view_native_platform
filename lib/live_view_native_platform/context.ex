@@ -1,9 +1,11 @@
 defmodule LiveViewNativePlatform.Context do
   @enforce_keys [:platform_id, :template_namespace]
 
-  defstruct platform_config: nil,
-            platform_id: nil,
+  defstruct custom_modifiers: [],
             modifiers: nil,
+            platform_config: nil,
+            platform_id: nil,
+            platform_modifiers: [],
             template_engine: LiveViewNative.Engine,
             template_extension: nil,
             template_namespace: nil
