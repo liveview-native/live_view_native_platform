@@ -30,7 +30,7 @@ defmodule LiveViewNativePlatform.MixProject do
     ]
   end
 
-  @source_url "https://github.com/liveviewnative/live_view_native_platform"
+  @source_url "https://github.com/liveview-native/live_view_native_platform"
 
   # Hex package configuration
   defp package do
