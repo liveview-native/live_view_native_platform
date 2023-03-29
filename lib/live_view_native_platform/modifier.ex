@@ -3,8 +3,15 @@ defmodule LiveViewNativePlatform.Modifier do
     quote do
       import LiveViewNativePlatform.Modifier,
         only: [
+          modifier_schema: 1,
           modifier_schema: 2
         ]
+    end
+  end
+
+  defmacro modifier_schema(modifier_name) do
+    quote do
+      modifier_schema(unquote(modifier_name), do: {:__block__, [], []})
     end
   end
 

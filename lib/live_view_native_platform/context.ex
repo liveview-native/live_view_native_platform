@@ -2,11 +2,12 @@ defmodule LiveViewNativePlatform.Context do
   @enforce_keys [:platform_id, :template_namespace]
 
   defstruct custom_modifiers: [],
+            eex_engine: Phoenix.LiveView.TagEngine,
             modifiers: nil,
             platform_config: nil,
             platform_id: nil,
             platform_modifiers: [],
-            template_engine: LiveViewNative.Engine,
+            tag_handler: LiveViewNative.TagEngine,
             template_extension: nil,
             template_namespace: nil
 
