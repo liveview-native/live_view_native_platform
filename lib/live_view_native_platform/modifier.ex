@@ -26,6 +26,10 @@ defmodule LiveViewNativePlatform.Modifier do
         unquote(block)
       end
 
+      def __lvn_modifier__, do: %{
+        modifier_name: unquote(modifier_name)
+      }
+
       def changeset(modifier \\ %__MODULE__{}, attrs) do
         modifier
         |> cast(attrs, fields())

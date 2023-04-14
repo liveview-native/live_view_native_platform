@@ -1,4 +1,11 @@
 defmodule LiveViewNativePlatform.Utils do
+  @introspect_keys %{
+    modifier: :__lvn_modifier__,
+    modifiers: :__lvn_modifiers__,
+    platform: :__lvn_platform__
+  }
+  @introspect_types Map.keys(@introspect_keys)
+
   def check_attribute(value, :must_be_string) when is_binary(value), do: {:must_be_string, true}
   def check_attribute(_value, :must_be_string), do: {:must_be_string, false}
 
@@ -57,6 +64,24 @@ defmodule LiveViewNativePlatform.Utils do
       {:error, result} ->
         raise "check_platform!/2 failed with result: #{inspect(result)}"
     end
+  end
+
+  def introspect_module(modules, type) when type in @introspect_types do
+    Enum.find(modules, fn module ->
+      introspect_key = @introspect_keys[type]
+      functions = apply(module, :__info__, [:functions])
+
+      Keyword.has_key?(functions, introspect_key)
+    end)
+  end
+
+  def introspect_modules(modules, type) when type in @introspect_types do
+    Enum.filter(modules, fn module ->
+      introspect_key = @introspect_keys[type]
+      functions = apply(module, :__info__, [:functions])
+
+      Keyword.has_key?(functions, introspect_key)
+    end)
   end
 
   def run_command(command, args, opts \\ []) do
