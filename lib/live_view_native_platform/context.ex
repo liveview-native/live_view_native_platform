@@ -24,7 +24,7 @@ defmodule LiveViewNativePlatform.Context do
     temolate_extension = Keyword.get(opts, :template_extension, ".#{platform_id}.heex")
 
     with spec <- Application.spec(otp_app),
-         [_ | _] = modules <- Keyword.get(spec, :modules),
+         modules <- spec[:modules] || [],
          namespace <- introspect_module(modules, :platform),
          platform_modifiers <- introspect_modules(modules, :modifier),
          keyed_platform_modifiers <- key_platform_modifiers(platform_modifiers)
