@@ -4,7 +4,7 @@ defmodule LiveViewNativePlatform.MixProject do
   def project do
     [
       app: :live_view_native_platform,
-      version: "0.0.5",
+      version: "0.0.6",
       elixir: "~> 1.13",
       description: "Protocol library for implementing LiveView Native clients",
       package: package(),
