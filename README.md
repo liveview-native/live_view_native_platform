@@ -50,7 +50,7 @@ defmodule LiveViewNativeExamplePlatform do
 end
 ```
 
-LiveView Native platform libraries will likely also require platform-specific code to run on the client and provide "native" compatibility for the Phoenix LiveView protocol. That code can coexist with the Elixir library (example [here](https://github.com/liveview-native/liveview-client-swiftui)) or be provided by a separate package. For the non-Elixir requirements needed to support LiveView Native within a native client, you might consider using [liveview-native-core](https://github.com/liveview-native/liveview-native-core) as a dependency within your library.
+LiveView Native platform libraries will likely also require platform-specific code to run on the client and provide "native" compatibility for the Phoenix LiveView protocol. That code can coexist with the Elixir library (example [here](https://github.com/liveview-native/liveview-client-swiftui/blob/main/mix.exs)) or be provided by a separate package. For the non-Elixir requirements needed to support LiveView Native within a native client, you might consider using [liveview-native-core](https://github.com/liveview-native/liveview-native-core) as a dependency within your library.
 
 ## Learn more
 
