@@ -4,7 +4,7 @@
 
 ## Installation
 
-To use LiveView Native Platform, add it to your list of dependencies in `mix.exs`.
+To use LiveView Native Platform, add it to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -14,7 +14,7 @@ end
 
 ## About
 
-LiveView Native Platform is the core Elixir dependency for [LiveView Native](https://github.com/liveview-native/live_view_native) client platforms. It provides protocols, macros and configuration functions that allow repositories like [liveview-client-swiftui](https://github.com/liveview-native/liveview-client-swiftui) to be used as a target of LiveView Native applications. This repository is only intended for client platform developers looking to add support for LiveView and should not be used by end-user developers building applications with LiveView Native.
+LiveView Native Platform is the core Elixir dependency for [LiveView Native](https://github.com/liveview-native/live_view_native) client platforms. It provides protocols, macros and configuration functions that allow repositories like [liveview-client-swiftui](https://github.com/liveview-native/liveview-client-swiftui) to be used as a target of LiveView Native applications. This repository is only intended for client platform developers looking to add support for LiveView Native to their own native code; you should not need to pull this dependency into a LiveView Native application directly.
 
 ## Usage
 
