@@ -27,6 +27,7 @@ defmodule LiveViewNativeExamplePlatform.Platform do
     def context(struct) do
       LiveViewNativePlatform.Context.define(:my_platform, # The unique `platform_id`
         custom_modifiers: struct.custom_modifiers, # Can be omitted if custom modifiers should not be supported
+        render_macro: :sigil_MYP, # Optional, if blank templates can only be rendered using `~LVN` sigil with `platform_id` modifier
         tag_handler: LiveViewNativeExamplePlatform.TagEngine, # Optional, defaults to `LiveViewNative.TagEngine`
         template_extension: ".myp.heex", # Optional, defaults to ".#{platform_id}.heex"
         otp_app: :live_view_native_example_platform # The OTP app name of your platform library

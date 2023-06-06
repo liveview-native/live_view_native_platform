@@ -7,6 +7,7 @@ defmodule LiveViewNativePlatform.Context do
             platform_config: nil,
             platform_id: nil,
             platform_modifiers: [],
+            render_macro: nil,
             tag_handler: LiveViewNative.TagEngine,
             template_extension: nil,
             template_namespace: nil
@@ -21,7 +22,8 @@ defmodule LiveViewNativePlatform.Context do
 
   def define(platform_id, opts \\ []) do
     otp_app = Keyword.fetch!(opts, :otp_app)
-    temolate_extension = Keyword.get(opts, :template_extension, ".#{platform_id}.heex")
+    render_macro = Keyword.get(opts, :render_macro)
+    template_extension = Keyword.get(opts, :template_extension, ".#{platform_id}.heex")
 
     with spec <- Application.spec(otp_app),
          modules <- spec[:modules] || [],
@@ -34,9 +36,10 @@ defmodule LiveViewNativePlatform.Context do
         modifiers: modifiers_struct(modules),
         platform_id: platform_id,
         platform_modifiers: keyed_platform_modifiers,
+        render_macro: render_macro,
         tag_handler: Keyword.get(opts, :tag_handler, LiveViewNative.TagEngine),
-        template_extension: temolate_extension,
-        template_namespace: Keyword.get(opts, :template_namespace, namespace),
+        template_extension: template_extension,
+        template_namespace: Keyword.get(opts, :template_namespace, namespace)
       }
     else
       error ->
