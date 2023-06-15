@@ -3,6 +3,7 @@ defmodule LiveViewNativePlatform.Context do
 
   defstruct custom_modifiers: [],
             eex_engine: Phoenix.LiveView.TagEngine,
+            modifiers_struct: nil,
             modifiers: nil,
             platform_config: nil,
             platform_id: nil,
@@ -29,11 +30,13 @@ defmodule LiveViewNativePlatform.Context do
          modules <- spec[:modules] || [],
          namespace <- introspect_module(modules, :platform),
          platform_modifiers <- introspect_modules(modules, :modifier),
-         keyed_platform_modifiers <- key_platform_modifiers(platform_modifiers)
+         keyed_platform_modifiers <- key_platform_modifiers(platform_modifiers),
+         modifiers <- modifiers_struct(modules)
     do
       %__MODULE__{
         custom_modifiers: Keyword.get(opts, :custom_modifiers, []),
-        modifiers: modifiers_struct(modules),
+        modifiers_struct: modifiers.__struct__ || LiveViewNativePlatform.GenericModifiers,
+        modifiers: modifiers,
         platform_id: platform_id,
         platform_modifiers: keyed_platform_modifiers,
         render_macro: render_macro,
@@ -63,7 +66,7 @@ defmodule LiveViewNativePlatform.Context do
   defp modifiers_struct(modules) do
     case introspect_module(modules, :modifiers) do
       nil ->
-        nil
+        %LiveViewNativePlatform.GenericModifiers{}
 
       module ->
         struct(module, %{})
