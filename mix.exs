@@ -4,8 +4,8 @@ defmodule LiveViewNativePlatform.MixProject do
   def project do
     [
       app: :live_view_native_platform,
-      version: "0.0.7-rc.1",
-      elixir: "~> 1.13",
+      version: "0.0.7",
+      elixir: "~> 1.15",
       description: "Protocol library for implementing LiveView Native clients",
       package: package(),
       start_permanent: Mix.env() == :prod,
