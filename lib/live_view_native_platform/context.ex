@@ -2,6 +2,7 @@ defmodule LiveViewNativePlatform.Context do
   @enforce_keys [:platform_id, :template_namespace]
 
   defstruct custom_modifiers: [],
+            addons: [],
             eex_engine: Phoenix.LiveView.TagEngine,
             modifiers_struct: nil,
             modifiers: nil,
@@ -25,11 +26,13 @@ defmodule LiveViewNativePlatform.Context do
     otp_app = Keyword.fetch!(opts, :otp_app)
     render_macro = Keyword.get(opts, :render_macro)
     template_extension = Keyword.get(opts, :template_extension, ".#{platform_id}.heex")
+    addons = Keyword.get(opts, :addons, [])
 
     with spec <- Application.spec(otp_app),
          modules <- spec[:modules] || [],
          namespace <- introspect_module(modules, :platform),
-         platform_modifiers <- introspect_modules(modules, :modifier),
+         addon_modifiers <- Enum.reduce(addons, [], fn addon, acc -> acc ++ introspect_modules(Application.spec(addon.otp_app, :modules), :modifier) end),
+         platform_modifiers <- introspect_modules(modules, :modifier) ++ addon_modifiers,
          keyed_platform_modifiers <- key_platform_modifiers(platform_modifiers),
          modifiers <- modifiers_struct(modules)
     do
