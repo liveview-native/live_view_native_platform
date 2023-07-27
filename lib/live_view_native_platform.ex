@@ -1,7 +1,7 @@
-defprotocol LiveViewNativePlatform do
-  @doc "Returns a struct containing information about the platform"
-  def context(struct)
-
-  @doc "Starts a new instance of the client simulator"
-  def start_simulator(struct, opts)
+defmodule LiveViewNativePlatform do
+  defmacro __using__(_) do
+    quote do
+      def __lvn_platform__, do: true
+    end
+  end
 end
