@@ -1,4 +1,4 @@
-defmodule LiveViewNativePlatform.Context do
+defmodule LiveViewNativePlatform.Env do
   @enforce_keys [:platform_id, :template_namespace]
 
   defstruct custom_modifiers: [],
@@ -31,8 +31,7 @@ defmodule LiveViewNativePlatform.Context do
          namespace <- introspect_module(modules, :platform),
          platform_modifiers <- introspect_modules(modules, :modifier),
          keyed_platform_modifiers <- key_platform_modifiers(platform_modifiers),
-         modifiers <- modifiers_struct(modules)
-    do
+         modifiers <- modifiers_struct(modules) do
       %__MODULE__{
         custom_modifiers: Keyword.get(opts, :custom_modifiers, []),
         modifiers_struct: modifiers.__struct__ || LiveViewNativePlatform.GenericModifiers,
@@ -46,7 +45,7 @@ defmodule LiveViewNativePlatform.Context do
       }
     else
       error ->
-        raise "Unexpected return value: #{inspect error}"
+        raise "Unexpected return value: #{inspect(error)}"
     end
   end
 
