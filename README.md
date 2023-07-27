@@ -24,8 +24,8 @@ To add support for LiveView Native, a client platform must implement the `LiveVi
 # lib/live_view_native_example_platform/platform.ex
 defmodule LiveViewNativeExamplePlatform.Platform do
   defimpl LiveViewNativePlatform.Kit do
-    def context(struct) do
-      LiveViewNativePlatform.Context.define(:my_platform, # The unique `platform_id`
+    def compile(struct) do
+      LiveViewNativePlatform.Env.define(:my_platform, # The unique `platform_id`
         custom_modifiers: struct.custom_modifiers, # Can be omitted if custom modifiers should not be supported
         render_macro: :sigil_MYP, # Optional, if blank templates can only be rendered using `~LVN` sigil with `platform_id` modifier
         tag_handler: LiveViewNativeExamplePlatform.TagEngine, # Optional, defaults to `LiveViewNative.TagEngine`
@@ -37,7 +37,7 @@ defmodule LiveViewNativeExamplePlatform.Platform do
 end
 ```
 
-Here `LiveViewNativePlatform.Context.define/3` takes a unique atom to use for identifying the platform and an option list of parameters. These parameters can be used to change certain aspects of the platform. In addition to this protocol, LiveView Native platform libraries must inherit the `LiveViewNativePlatform.Kit` macro on the top-level module of the library:
+Here `LiveViewNativePlatform.Env.define/3` takes a unique atom to use for identifying the platform and an option list of parameters. These parameters can be used to change certain aspects of the platform. In addition to this protocol, LiveView Native platform libraries must inherit the `LiveViewNativePlatform.Kit` macro on the top-level module of the library:
 
 ```elixir
 defmodule LiveViewNativeExamplePlatform do
