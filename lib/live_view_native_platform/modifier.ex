@@ -4,8 +4,15 @@ defmodule LiveViewNativePlatform.Modifier do
       import LiveViewNativePlatform.Modifier,
         only: [
           modifier_schema: 1,
-          modifier_schema: 2
+          modifier_schema: 2,
+          change_event: 0
         ]
+    end
+  end
+
+  defmacro change_event() do
+    quote do
+      field(:change, LiveViewNativePlatform.Modifier.Types.Event, default: nil)
     end
   end
 
