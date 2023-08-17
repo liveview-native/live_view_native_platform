@@ -11,7 +11,10 @@ defmodule LiveViewNativePlatform.Modifier.Types.Event do
   def cast(value) when is_map(value) do
     value =
       value
-      |> Map.update(:params, Jason.encode!(Map.new()), fn params -> Jason.encode!(params) end)
+      |> Map.update(:params, nil, fn
+        nil -> nil
+        params -> Jason.encode!(params)
+      end)
 
     {:ok, struct(__MODULE__, value)}
   end
