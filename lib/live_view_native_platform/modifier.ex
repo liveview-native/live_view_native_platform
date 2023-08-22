@@ -39,7 +39,7 @@ defmodule LiveViewNativePlatform.Modifier do
 
       def changeset(modifier \\ %__MODULE__{}, attrs) do
         modifier
-        |> cast(attrs, fields())
+        |> cast(attrs, fields(), empty_values: [])
       end
 
       def fields do
