@@ -8,7 +8,7 @@ To use LiveView Native Platform, add it to your list of dependencies in `mix.exs
 
 ```elixir
 def deps do
-  [{:live_view_native_platform, "~> 0.0.6"}]
+  [{:live_view_native_platform, "~> 0.1"}]
 end
 ```
 
