@@ -28,7 +28,7 @@ end
 
 This is the entry point of your platform library. At compile-time, a LiveView Native application will look for any modules that inherit the `LiveViewNativePlatform` macro and call `platforms/0` on all of them. The returned list of platforms is used to tell the application which platforms are available and describe how they will be used in an application.
 
-## Implementing `LiveViewNativePlatform.Kit`
+## Implementing a Kit
 
 Each platform module returned by `platforms/0` in the previous step must implement the `LiveViewNativePlatform.Kit` protocol. This protocol expects one function called `compile/1` to be implemented, which returns a `%LiveViewNativePlatform.Env{}` struct. This struct has the following properties:
 
@@ -68,7 +68,7 @@ defmodule LiveViewNativeExampleLib.Platform do
 end
 ```
 
-This will allow end-users pulling your platform library to use in their own LiveView Native applications, like so:
+This will allow LiveView Native applications to use your platform library, like so:
 
 ```elixir
 # lib/my_app_web/live/hello_live.ex
@@ -103,13 +103,13 @@ defmodule MyAppWeb.HelloLive do
 end
 ```
 
-Then, a client can connect to a LiveView Native application that supports your platform library by passing its unique platform ID as the `_platform` connection param. So in this example, connecting to `http://localhost:4000?_platform=example_lib` will render the `~EXAMPLE""` template and connecting to `http://localhost:4000` will render the web template.
+A client can connect to a LiveView Native application that supports your platform library by passing its unique platform ID as the `_platform` connection param (this is handled by [`LiveViewNative.LiveSession`](https://hexdocs.pm/live_view_native/LiveViewNative.LiveSession.html)). So in this example, connecting to `http://localhost:4000?_platform=example_lib` will render the `~EXAMPLE""` template and connecting to `http://localhost:4000` will render the web template.
 
 ## Modifiers
 
 LiveView Native Platform supports modifiers for platforms that use them, like SwiftUI and Jetpack Compose. Your native platform might not have a need for modifiers; if not, you can ignore modifiers entirely in your platform library implementation.
 
-If you do want to use modifiers in your platform library, you can use the `live_view_native_swift_ui` platform library as a reference. The `modifiers_struct` set on your `%LiveViewNativePlatform.Env{}` will need to implement the following protocols to fully support modifiers:
+If you want to use modifiers in your platform library, consider looking at how the `live_view_native_swift_ui` platform library does it as a reference. The `modifiers_struct` set on your `%LiveViewNativePlatform.Env{}` will need to implement the following protocols to fully support modifiers:
 
 - `LiveViewNativePlatform.ModifiersStack`
 - `Jason.Encoder`

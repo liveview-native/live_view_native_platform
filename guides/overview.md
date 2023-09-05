@@ -6,12 +6,14 @@ This library provides the serverside glue between Phoenix applications using `li
 
 > #### Warning {: .warning}
 > This dependency is intended for library developers and shouldn't be used for end-user developers who want to use LiveView Native within their application.
-> For information on using LiveView Native within an application, check the HexDocs for the `live_view_native` library here [LiveView Native](https://hexdocs.pm/live_view_native/).
+> For information on using LiveView Native within an application, check the HexDocs for the `live_view_native` library [here](https://hexdocs.pm/live_view_native/).
 >
 
 ## Getting Started
 
-Platform libraries for LiveView Native have two essential layers; the serverside Elixir code that the `live_view_native` library knows how to interface with, and the clientside code that provides compatibility with Phoenix LiveView backends. This library and documentation only focuses on the serverside responsibilities of a platform library. For information on the clientside implementation needed to support LiveView Native, see `liveview-native-core` [here](https://github.com/liveview-native/liveview-native-core). It provides platform-agnostic implementations of [morphdom](https://github.com/patrick-steele-idem/morphdom), Phoenix sockets and other essential glue code that one could use to build a LiveView Native compatible client.
+Platform libraries for LiveView Native have two essential layers; the serverside Elixir code that the `live_view_native` library knows how to interface with, and the clientside code that provides compatibility with Phoenix LiveView backends. This library and documentation only focuses on the serverside responsibilities of a platform library.
+
+For information on the clientside implementation needed to support LiveView Native, see [`liveview-native-core`](https://github.com/liveview-native/liveview-native-core). It provides platform-agnostic implementations of [morphdom](https://github.com/patrick-steele-idem/morphdom), Phoenix sockets and other essential glue code that one could use to build a LiveView Native compatible client.
 
 To use LiveView Native Platform in your platform library, simply include it as a dependency in your `mix.exs`:
 
