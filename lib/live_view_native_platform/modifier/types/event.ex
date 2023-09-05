@@ -1,4 +1,6 @@
 defmodule LiveViewNativePlatform.Modifier.Types.Event do
+  @moduledoc false
+
   @derive Jason.Encoder
   defstruct [:event, :type, :params, :target, :debounce, :throttle]
 

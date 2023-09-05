@@ -1,4 +1,6 @@
 defmodule LiveViewNativePlatform.Modifier.Type do
+  @moduledoc false
+
   defmacro __using__(_) do
     quote do
       use Ecto.Type

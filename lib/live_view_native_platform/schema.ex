@@ -1,4 +1,6 @@
 defmodule LiveViewNativePlatform.Schema do
+  @moduledoc false
+
   defmacro __using__(opts) do
     {_op, _meta, args} = Keyword.get(opts, :params, %{})
     struct_keys = Keyword.keys(args)

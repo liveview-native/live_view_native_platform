@@ -1,15 +1,18 @@
 defmodule LiveViewNativePlatform.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+
   def project do
     [
       app: :live_view_native_platform,
-      version: "0.0.8",
+      version: @version,
       elixir: "~> 1.15",
       description: "Protocol library for implementing LiveView Native clients",
       package: package(),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      docs: docs()
     ]
   end
 
@@ -42,5 +45,33 @@ defmodule LiveViewNativePlatform.MixProject do
       },
       source_url: @source_url
     }
+  end
+
+  defp docs do
+    [
+      source_ref: "v#{@version}",
+      main: "overview",
+      logo: "guides/assets/images/logo.png",
+      assets: "guides/assets",
+      extra_section: "GUIDES",
+      extras: extras(),
+      groups_for_extras: groups_for_extras(),
+      groups_for_modules: groups_for_modules()
+    ]
+  end
+
+  defp extras do
+    [
+      "guides/overview.md",
+      "guides/creating-a-platform-library.md",
+    ]
+  end
+
+  defp groups_for_extras do
+    []
+  end
+
+  defp groups_for_modules do
+    []
   end
 end
