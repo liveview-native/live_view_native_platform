@@ -1,4 +1,6 @@
 defmodule LiveViewNativePlatform.Utils do
+  @moduledoc false
+
   @introspect_keys %{
     modifier: :__lvn_modifier__,
     modifiers: :__lvn_modifiers__,

@@ -1,4 +1,8 @@
 defmodule LiveViewNativePlatform.Env do
+  @moduledoc """
+  Provides information about a LiveView Native platform.
+  """
+
   @enforce_keys [:platform_id, :template_namespace]
 
   defstruct custom_modifiers: [],
@@ -21,6 +25,9 @@ defmodule LiveViewNativePlatform.Env do
 
   import LiveViewNativePlatform.Utils, only: [introspect_module: 2, introspect_modules: 2]
 
+  @moduledoc """
+  Define a new LiveView Native Platform. This function should only be called at compile-time.
+  """
   def define(platform_id, opts \\ []) do
     otp_app = Keyword.fetch!(opts, :otp_app)
     render_macro = Keyword.get(opts, :render_macro)

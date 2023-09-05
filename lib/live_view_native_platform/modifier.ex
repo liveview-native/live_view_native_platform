@@ -1,4 +1,8 @@
 defmodule LiveViewNativePlatform.Modifier do
+  @moduledoc """
+  Supporting functionality and macros for modifiers.
+  """
+
   defmacro __using__(_) do
     quote do
       import LiveViewNativePlatform.Modifier,
@@ -10,18 +14,27 @@ defmodule LiveViewNativePlatform.Modifier do
     end
   end
 
-  defmacro change_event() do
+  @doc """
+  Generates a field for storing modifier events triggered with `phx-change`.
+  """
+  defmacro change_event do
     quote do
       field(:change, LiveViewNativePlatform.Modifier.Types.Event, default: nil)
     end
   end
 
+  @doc """
+  Defines a modifier schema that takes no parameters.
+  """
   defmacro modifier_schema(modifier_name) do
     quote do
       modifier_schema(unquote(modifier_name), do: {:__block__, [], []})
     end
   end
 
+  @doc """
+  Defines a modifier schema.
+  """
   defmacro modifier_schema(modifier_name, do: block) do
     quote do
       use Ecto.Schema
