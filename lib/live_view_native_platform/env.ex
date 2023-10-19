@@ -15,7 +15,8 @@ defmodule LiveViewNativePlatform.Env do
             render_macro: nil,
             tag_handler: LiveViewNative.TagEngine,
             template_extension: nil,
-            template_namespace: nil
+            template_namespace: nil,
+            valid_targets: []
 
   defimpl Phoenix.HTML.Safe do
     def to_iodata(data) do
@@ -48,7 +49,8 @@ defmodule LiveViewNativePlatform.Env do
         render_macro: render_macro,
         tag_handler: Keyword.get(opts, :tag_handler, LiveViewNative.TagEngine),
         template_extension: template_extension,
-        template_namespace: Keyword.get(opts, :template_namespace, namespace)
+        template_namespace: Keyword.get(opts, :template_namespace, namespace),
+        valid_targets: Keyword.get(opts, :valid_targets, [])
       }
     else
       error ->
