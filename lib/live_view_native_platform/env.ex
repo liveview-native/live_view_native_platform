@@ -26,7 +26,7 @@ defmodule LiveViewNativePlatform.Env do
 
   import LiveViewNativePlatform.Utils, only: [introspect_module: 2, introspect_modules: 2]
 
-  @moduledoc """
+  @doc """
   Define a new LiveView Native Platform. This function should only be called at compile-time.
   """
   def define(platform_id, opts \\ []) do
