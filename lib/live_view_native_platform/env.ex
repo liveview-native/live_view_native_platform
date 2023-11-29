@@ -6,6 +6,7 @@ defmodule LiveViewNativePlatform.Env do
   @enforce_keys [:platform_id, :template_namespace]
 
   defstruct custom_modifiers: [],
+            default_layouts: %{},
             eex_engine: Phoenix.LiveView.TagEngine,
             modifiers_struct: nil,
             modifiers: nil,
@@ -42,6 +43,13 @@ defmodule LiveViewNativePlatform.Env do
          modifiers <- modifiers_struct(modules) do
       %__MODULE__{
         custom_modifiers: Keyword.get(opts, :custom_modifiers, []),
+        default_layouts: Keyword.get(opts, :default_layouts, %{
+          app: "<%= @inner_content %>",
+          root: """
+            <csrf-token value={get_csrf_token()} />
+            <%= @inner_content %>
+          """
+        }),
         modifiers_struct: modifiers.__struct__ || LiveViewNativePlatform.GenericModifiers,
         modifiers: modifiers,
         platform_id: platform_id,
